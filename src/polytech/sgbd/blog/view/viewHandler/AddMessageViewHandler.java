@@ -2,6 +2,7 @@ package polytech.sgbd.blog.view.viewHandler;
 
 import java.io.File;
 import java.net.MalformedURLException;
+import java.util.Date;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -70,7 +71,7 @@ public class AddMessageViewHandler {
 				e.printStackTrace();
 			}
 			lImage = true;
-		} else if (!rImage) {
+		}else if (!rImage) {
 			try {
 				path2 = file.toURI().toURL().toString();
 				image2.setImage(new Image(path2, true));
@@ -85,17 +86,22 @@ public class AddMessageViewHandler {
 	}
 
 	public void onSaveClicked() {
-		// messageController.insert();
+		// messageController.insert(message.getText(), "kong",
+		// SessionController.getActuelUserId(), new Date(), path1, path2,
+		// linkAddress, linkTexts, keywordTexts);
 	}
 
 	public void onDel1Clicked() {
 		image1.setImage(null);
-		//numImages==;
-		
+		lImage = false;
+		addimages.setDisable(false);
+
 	}
 
 	public void onDel2Clicked() {
-
+		image2.setImage(null);
+		rImage = false;
+		addimages.setDisable(false);
 	}
 
 }
