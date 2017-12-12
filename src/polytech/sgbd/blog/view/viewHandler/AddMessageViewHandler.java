@@ -1,6 +1,7 @@
 package polytech.sgbd.blog.view.viewHandler;
 
 import java.io.File;
+import java.net.MalformedURLException;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,9 +12,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import polytech.sgbd.blog.controller.MessageController;
+import polytech.sgbd.blog.controller.SessionController;
 
 public class AddMessageViewHandler {
-	private int numImages;
+	private boolean lImage = false;
+	private boolean rImage = false;
 	private Stage stage;
 	@FXML
 	private Pane pane;
@@ -33,6 +37,15 @@ public class AddMessageViewHandler {
 	private ImageView image1;
 	@FXML
 	private ImageView image2;
+	@FXML
+	private Button delete1;
+	@FXML
+	private Button delete2;
+
+	private String path1;
+	private String path2;
+
+	private MessageController messageController = SessionController.getMessageController();
 
 	public void setStage(Stage stage) {
 		this.stage = stage;
@@ -46,18 +59,43 @@ public class AddMessageViewHandler {
 				new FileChooser.ExtensionFilter("JPG", "*.jpg"), new FileChooser.ExtensionFilter("GIF", "*.gif"),
 				new FileChooser.ExtensionFilter("BMP", "*.bmp"), new FileChooser.ExtensionFilter("PNG", "*.png"));
 		File file = fileChooser.showOpenDialog(stage);
-		System.out.println(file.getAbsolutePath());
-		if (numImages == 0) {
-			image1.setImage(new Image("/Users/penghanyuan/Pictures/119_4444_d59d3e597931c8e.jpg"));
-			numImages++;
-		} else if (numImages == 1) {
-			image2.setImage(new Image(file.getAbsolutePath()));
-			numImages++;
+
+		if (!lImage) {
+			try {
+				path1 = file.toURI().toURL().toString();
+				image1.setImage(new Image(path1, true));
+				delete1.setVisible(true);
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			lImage = true;
+		} else if (!rImage) {
+			try {
+				path2 = file.toURI().toURL().toString();
+				image2.setImage(new Image(path2, true));
+				delete2.setVisible(true);
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			rImage = true;
 			addimages.setDisable(true);
 		}
 	}
 
 	public void onSaveClicked() {
+		// messageController.insert();
+	}
+
+	public void onDel1Clicked() {
+		image1.setImage(null);
+		//numImages==;
+		
+	}
+
+	public void onDel2Clicked() {
 
 	}
+
 }
