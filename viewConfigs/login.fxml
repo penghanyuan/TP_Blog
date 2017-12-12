@@ -12,9 +12,10 @@
             <TextField fx:id="username" layoutX="116.0" layoutY="56.0" promptText="Username or email" />
             <Label layoutX="36.0" layoutY="61.0" text="UserName" />
             <Label layoutX="39.0" layoutY="136.0" text="Password" />
-            <TextField fx:id="password" layoutX="116.0" layoutY="131.0" promptText="Password" />
             <Button fx:id="login" layoutX="88.0" layoutY="188.0" mnemonicParsing="false" onMouseClicked="#onLoginClicked" text="Log In" />
             <Button fx:id="signup" layoutX="250.0" layoutY="188.0" mnemonicParsing="false" onMouseClicked="#onSignupClicked" text="Sign Up" />
+            <PasswordField fx:id="password" layoutX="117.0" layoutY="131.0" promptText="Password" />
+            <Label fx:id="error" layoutX="117.0" layoutY="90.0" text="Username or Password is incorrect!" textFill="RED" visible="false" />
          </children>
       </AnchorPane>
    </children>

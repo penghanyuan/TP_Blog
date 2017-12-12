@@ -1,9 +1,19 @@
 package polytech.sgbd.blog.view.viewHandler;
 
+import java.util.Date;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import polytech.sgbd.blog.controller.AddressController;
+import polytech.sgbd.blog.controller.MessageController;
+import polytech.sgbd.blog.controller.SessionController;
+import polytech.sgbd.blog.controller.UserController;
 import polytech.sgbd.blog.view.LoginView;
 
 public class SignupViewHandler {
@@ -23,6 +33,8 @@ public class SignupViewHandler {
 	@FXML
 	private Label info;
 
+	private UserController userController = SessionController.getUserController();
+
 	public void onSignupClicked() {
 		if (username.getText().isEmpty() || firstname.getText().isEmpty() || lastname.getText().isEmpty()
 				|| email.getText().isEmpty() || psd.getText().isEmpty() || cpsd.getText().isEmpty()) {
@@ -32,7 +44,11 @@ public class SignupViewHandler {
 			info.setText("Two passwords are different\n please check!");
 			info.setVisible(true);
 		} else {
-
+			Date date = new Date();
+			userController.insert(username.getText(), firstname.getText(), lastname.getText(), psd.getText(), date,
+					null);
+			info.setText("Success!");
+			info.setVisible(true);
 		}
 	}
 

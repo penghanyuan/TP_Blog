@@ -39,8 +39,16 @@ public class MessageController {
 		return messageDAO.selectByUser(user);
 	}
 	
+	public List<Message> getByUserId(int userId){
+		return messageDAO.selectByUserId(userId);
+	}
+	
 	public List<Message> getByDate(Date date){
 		return messageDAO.selectByDate(date);
+	}
+	
+	public Message getById(int id){
+		return messageDAO.selectById(id);
 	}
 	
 	public List<Message> getByKeyword(Keyword keyword){

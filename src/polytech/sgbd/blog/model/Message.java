@@ -11,24 +11,23 @@ public class Message {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
-	
+
 	private String title;
 	private String text;
-	
+
 	@Transient
 	private Date date;
-	
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy="message")
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "message")
 	private List<Link> links;
-	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy="message")
+
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "message")
 	private List<Image> images;
-	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy="message")
+
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "message")
 	private List<KeyWord> keyWords;
-	
-	@ManyToOne
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private User user;
 
 	public int getId() {
@@ -69,8 +68,8 @@ public class Message {
 
 	public void setLinks(List<Link> links) {
 		this.links = links;
-		if(links != null){
-			for(Link link : links){
+		if (links != null) {
+			for (Link link : links) {
 				link.setMessage(this);
 			}
 		}
@@ -82,8 +81,8 @@ public class Message {
 
 	public void setImages(List<Image> images) {
 		this.images = images;
-		if(images != null){
-			for(Image img : images){
+		if (images != null) {
+			for (Image img : images) {
 				img.setMessage(this);
 			}
 		}
@@ -95,8 +94,8 @@ public class Message {
 
 	public void setKeyWords(List<KeyWord> keyWords) {
 		this.keyWords = keyWords;
-		if(keyWords != null){
-			for(KeyWord keyword : keyWords){
+		if (keyWords != null) {
+			for (KeyWord keyword : keyWords) {
 				keyword.setMessage(this);
 			}
 		}
@@ -109,5 +108,10 @@ public class Message {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
+
+	@Override
+	public String toString() {
+		return this.text + "\n\n" + this.date;
+	}
+
 }
