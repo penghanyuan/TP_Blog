@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import polytech.sgbd.blog.controller.MessageController;
 import polytech.sgbd.blog.controller.SessionController;
 import polytech.sgbd.blog.model.Message;
+import polytech.sgbd.blog.view.AddMessageView;
 import polytech.sgbd.blog.view.MessageView;
 
 public class MainPageViewHandler {
@@ -31,10 +32,6 @@ public class MainPageViewHandler {
 
 	private MessageController messageController = SessionController.getMessageController();
 
-	public MainPageViewHandler() {
-
-	}
-
 	@FXML
 	protected void initialize() {
 		messageList = messageController.getByUserId(SessionController.getActuelUserId());
@@ -50,12 +47,20 @@ public class MainPageViewHandler {
 				list.setDisable(true);
 				stage.setOnCloseRequest(event -> {
 					list.setDisable(false);
+					list.refresh();
 				});
 			}
 		});
 	}
 
 	public void onAddClicked() {
+		AddMessageView addMsgView = new AddMessageView();
+		Stage stage = addMsgView.showMessage();
+		add.setDisable(true);
+		stage.setOnCloseRequest(event -> {
+			add.setDisable(false);
+			list.refresh();
+		});
 
 	}
 

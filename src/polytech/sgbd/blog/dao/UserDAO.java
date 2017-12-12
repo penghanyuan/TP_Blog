@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import polytech.sgbd.blog.model.Message;
@@ -36,8 +37,13 @@ public class UserDAO {
 		String sql = "select user from User user where user.userName = :userName";
 		Query query = em.createQuery(sql);
 		query.setParameter("userName", userName);
-		User user;
-		user = (User) query.getSingleResult();
+		User user = null;
+		try{
+			user = (User) query.getSingleResult();
+		} catch (NoResultException e){
+			user = null;
+		}
+		
 		return user;
 	}
 }

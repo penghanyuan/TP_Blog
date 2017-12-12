@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="polytech.sgbd.blog.view.viewHandler.AddMessageViewHandler">
+   <children>
+      <TextArea fx:id="message" centerShape="false" focusTraversable="false" layoutX="70.0" layoutY="22.0" prefHeight="150.0" prefWidth="460.0" scaleShape="false" />
+      <Button fx:id="addimages" layoutX="71.0" layoutY="335.0" mnemonicParsing="false" onMouseClicked="#onAddImagesClicked" text="Add images" />
+      <ImageView fx:id="image1" fitHeight="150.0" fitWidth="200.0" layoutX="70.0" layoutY="383.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="image2" fitHeight="150.0" fitWidth="200.0" layoutX="330.0" layoutY="383.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="save" layoutX="483.0" layoutY="335.0" mnemonicParsing="false" onMouseClicked="#onSaveClicked" text="Save" />
+      <TextField fx:id="link" layoutX="71.0" layoutY="277.0" prefHeight="27.0" prefWidth="460.0" promptText="Link" />
+      <TextField fx:id="linktext" layoutX="70.0" layoutY="234.0" promptText="Link text" />
+      <TextField fx:id="keywords" layoutX="70.0" layoutY="189.0" promptText="Key Word(Spilited by ,)" />
+   </children>
+</Pane>
