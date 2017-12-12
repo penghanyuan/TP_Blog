@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class KeyWord {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int Id;
+	private int id;
 	
 	@ManyToOne
 	private Message message;
@@ -14,11 +14,11 @@ public class KeyWord {
 	private String text;
 
 	public int getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getText() {

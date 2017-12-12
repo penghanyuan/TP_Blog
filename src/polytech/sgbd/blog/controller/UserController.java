@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import polytech.sgbd.blog.model.User;
-import polytech.sgbd.blog.model.Address;
 import polytech.sgbd.blog.model.Message;
 import polytech.sgbd.blog.dao.UserDAO;;
 
@@ -22,7 +21,7 @@ public class UserController {
 	}
 
 	public void insert(String userName, String firstName, String lastName, String password, Date createdDate,
-			Address address) {
+			String address) {
 		User user = new User();
 		user.setUserName(userName);
 		user.setFirstName(firstName);
@@ -34,7 +33,7 @@ public class UserController {
 	}
 
 	public boolean verifyUserPsd(String username, String psd) {
-		User user = this.getUserbyUsername(username);
+		User user = this.getUserByUsername(username);
 		if (user != null && user.getPassword().equals(psd)) {
 			SessionController.setActuelUserId(user.getId());
 			System.out.println(SessionController.getActuelUserId());
@@ -45,8 +44,12 @@ public class UserController {
 		}
 	}
 
-	public User getUserbyUsername(String userName) {
-		return userDAO.selectUserByUsername(userName);
+	public User getUserByUsername(String userName) {
+		return userDAO.selectByUsername(userName);
+	}
+	
+	public User getUserById(int id) {
+		return userDAO.selectById(id);
 	}
 
 	public List<User> getAll() {

@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import polytech.sgbd.blog.controller.AddressController;
 import polytech.sgbd.blog.controller.MessageController;
 import polytech.sgbd.blog.controller.SessionController;
 import polytech.sgbd.blog.controller.UserController;

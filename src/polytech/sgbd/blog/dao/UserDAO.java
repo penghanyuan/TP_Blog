@@ -33,10 +33,24 @@ public class UserDAO {
 		return users;
 	}
 	
-	public User selectUserByUsername(String userName){
+	public User selectByUsername(String userName){
 		String sql = "select user from User user where user.userName = :userName";
 		Query query = em.createQuery(sql);
 		query.setParameter("userName", userName);
+		User user = null;
+		try{
+			user = (User) query.getSingleResult();
+		} catch (NoResultException e){
+			user = null;
+		}
+		
+		return user;
+	}
+	
+	public User selectById(int id){
+		String sql = "select user from User user where user.Id = :id";
+		Query query = em.createQuery(sql);
+		query.setParameter("id", id);
 		User user = null;
 		try{
 			user = (User) query.getSingleResult();

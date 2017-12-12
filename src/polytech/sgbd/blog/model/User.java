@@ -9,28 +9,26 @@ import javax.persistence.*;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int Id;
+	private int id;
 	
 	private String userName;
 	private String firstName;
 	private String lastName;
 	private String password;
+	private String address;
 	
 	@Transient
 	private Date createdDate;
-	
-	@OneToOne
-	private Address address;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL,mappedBy="user")
 	private List<Message> messages;
 
 	public int getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getUserName() {
@@ -79,14 +77,12 @@ public class User {
 		this.messages = messages;
 	}
 
-	public Address getAddress() {
+	public String getAddress() {
 		return address;
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(String address) {
 		this.address = address;
-		if(address != null)
-			address.setUser(this);
 	}
 
 	public List<Message> getMessages() {

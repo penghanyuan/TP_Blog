@@ -58,7 +58,7 @@ public class MessageDAO {
 	public List<Message> selectByDate(Date date) {
 		String sql = "select message from Message message where message.date = :date";
 		Query query = em.createQuery(sql);
-		query.setParameter(0, date);
+		query.setParameter("date", date);
 		List<Message> messages = new ArrayList<Message>();
 		messages.addAll(query.getResultList());
 
@@ -68,7 +68,7 @@ public class MessageDAO {
 	public List<Message> selectByKeyword(Keyword keyword) {
 		String sql = "select message from Message message where message.keyword = :keyword";
 		Query query = em.createQuery(sql);
-		query.setParameter(0, keyword);
+		query.setParameter("keyword", keyword);
 		List<Message> messages = new ArrayList<Message>();
 		messages.addAll(query.getResultList());
 
@@ -77,5 +77,32 @@ public class MessageDAO {
 
 	public Message selectById(int id) {
 		return SessionController.getEm().find(Message.class, id);
+	}
+	
+	public boolean deleteById(int id){
+		String sql = "delete message from Message message where message.id = :id";
+		Query query = em.createQuery(sql);
+		query.setParameter("id", id);
+		int result = query.executeUpdate();
+		
+		if(result > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public boolean modifyById(int id, String newText){
+		String sql = "update Message message set message.text = :newText where message.id = :id";
+		Query query = em.createQuery(sql);
+		query.setParameter("newText", newText);
+		query.setParameter("id", id);
+		int result = query.executeUpdate();
+		
+		if(result > 0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }
