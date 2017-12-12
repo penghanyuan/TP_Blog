@@ -39,10 +39,13 @@ public class MessageViewHandler {
 	public void onSaveClicked() {
 		text.setEditable(false);
 		save.setVisible(false);
+		messageController.modifyById(SessionController.getOpenMessageId(), text.getText());
+		
+		
 	}
 
 	public void onDeleteClicked() {
-
+		messageController.deleteById(SessionController.getOpenMessageId());
 	}
 
 	

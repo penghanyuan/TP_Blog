@@ -32,13 +32,16 @@ public class MainPageViewHandler {
 
 	private MessageController messageController = SessionController.getMessageController();
 
-	@FXML
-	protected void initialize() {
+	private void refreshList(){
 		messageList = messageController.getByUserId(SessionController.getActuelUserId());
 		ObservableList<Message> msgList = FXCollections.observableArrayList(messageList);
 		list.setFixedCellSize(100);
 		list.setItems(msgList);
 		list.refresh();
+	}
+	@FXML
+	protected void initialize() {
+		this.refreshList();
 		list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Message>() {
 			public void changed(ObservableValue<? extends Message> observable, Message oldValue, Message newValue) {
 				MessageView msgView = new MessageView();
@@ -59,7 +62,7 @@ public class MainPageViewHandler {
 		add.setDisable(true);
 		stage.setOnCloseRequest(event -> {
 			add.setDisable(false);
-			list.refresh();
+			this.refreshList();
 		});
 
 	}

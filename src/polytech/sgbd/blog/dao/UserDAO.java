@@ -48,7 +48,7 @@ public class UserDAO {
 	}
 	
 	public User selectById(int id){
-		String sql = "select user from User user where user.Id = :id";
+		String sql = "select user from User user where user.id = :id";
 		Query query = em.createQuery(sql);
 		query.setParameter("id", id);
 		User user = null;

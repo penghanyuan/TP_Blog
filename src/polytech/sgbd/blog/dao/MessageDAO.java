@@ -6,11 +6,10 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import javassist.compiler.ast.Keyword;
-import polytech.sgbd.blog.controller.SessionController;
 import polytech.sgbd.blog.model.Message;
-import polytech.sgbd.blog.model.User;
 
 public class MessageDAO {
 	private EntityManager em;
@@ -27,25 +26,13 @@ public class MessageDAO {
 
 	public List<Message> selectAll() {
 		String sql = "select message from Message message";
-		Query query = em.createQuery(sql);
-		List<Message> messages = new ArrayList<Message>();
-		messages.addAll(query.getResultList());
-
-		return messages;
-	}
-
-	public List<Message> selectByUser(User user) {
-		// unsafe
-		String sql = "select message from Message message where message.user = :user";
-		Query query = em.createQuery(sql);
-		query.setParameter(0, user);
-		List<Message> messages = new ArrayList<Message>();
-		messages.addAll(query.getResultList());
-
-		return messages;
+		TypedQuery<Message> query = em.createQuery(sql, Message.class);
+		List<Message> results = query.getResultList();
+		return results;
 	}
 
 	public List<Message> selectByUserId(int userId) {
+		/*
 		String sql = "select message from Message message where message.user.id = :userId";
 		Query query = em.createQuery(sql);
 		query.setParameter("userId", userId);
@@ -53,9 +40,24 @@ public class MessageDAO {
 		messages.addAll(query.getResultList());
 
 		return messages;
+		*/
+		String sql = "select message from Message message where message.user.id = :userId";
+		TypedQuery<Message> query = em.createQuery(sql, Message.class);
+		query.setParameter("userId", userId);
+		List<Message> results = query.getResultList();
+		return results;
 	}
+	
+	public List<Message> selectByUsername(String username) {
+		String sql = "select message from Message message where message.user.username = :username";
+		TypedQuery<Message> query = em.createQuery(sql, Message.class);
+		query.setParameter("username", username);
+		List<Message> results = query.getResultList();
+		return results;
+	} 
 
 	public List<Message> selectByDate(Date date) {
+		/*
 		String sql = "select message from Message message where message.date = :date";
 		Query query = em.createQuery(sql);
 		query.setParameter("date", date);
@@ -63,46 +65,39 @@ public class MessageDAO {
 		messages.addAll(query.getResultList());
 
 		return messages;
+		*/
+		String sql = "select message from Message message where message.date = :date";
+		TypedQuery<Message> query = em.createQuery(sql, Message.class);
+		query.setParameter("date", date);
+		List<Message> results = query.getResultList();
+		return results;
 	}
 
 	public List<Message> selectByKeyword(Keyword keyword) {
 		String sql = "select message from Message message where message.keyword = :keyword";
-		Query query = em.createQuery(sql);
+		TypedQuery<Message> query = em.createQuery(sql, Message.class);
 		query.setParameter("keyword", keyword);
-		List<Message> messages = new ArrayList<Message>();
-		messages.addAll(query.getResultList());
-
-		return messages;
+		List<Message> results = query.getResultList();
+		return results;
 	}
 
 	public Message selectById(int id) {
-		return SessionController.getEm().find(Message.class, id);
+		return em.find(Message.class, id);
 	}
-	
-	public boolean deleteById(int id){
-		String sql = "delete message from Message message where message.id = :id";
-		Query query = em.createQuery(sql);
-		query.setParameter("id", id);
-		int result = query.executeUpdate();
-		
-		if(result > 0){
-			return true;
-		}else{
-			return false;
-		}
+
+	public void deleteById(int id) {
+		Message message = em.find(Message.class, 1);
+
+		em.getTransaction().begin();
+		em.remove(message);
+		em.getTransaction().commit();
 	}
-	
-	public boolean modifyById(int id, String newText){
-		String sql = "update Message message set message.text = :newText where message.id = :id";
-		Query query = em.createQuery(sql);
-		query.setParameter("newText", newText);
-		query.setParameter("id", id);
-		int result = query.executeUpdate();
-		
-		if(result > 0){
-			return true;
-		}else{
-			return false;
-		}
+
+	public void modifyById(int id, String newText) {
+		Message message = em.find(Message.class, 1);
+
+		em.getTransaction().begin();
+		message.setText(newText);
+		em.getTransaction().commit();
 	}
 }

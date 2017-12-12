@@ -2,7 +2,9 @@ package polytech.sgbd.blog.view.viewHandler;
 
 import java.io.File;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -64,17 +66,17 @@ public class AddMessageViewHandler {
 		if (!lImage) {
 			try {
 				path1 = file.toURI().toURL().toString();
-				image1.setImage(new Image(path1, true));
+				image1.setImage(new Image(path1));
 				delete1.setVisible(true);
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			lImage = true;
-		}else if (!rImage) {
+		} else if (!rImage) {
 			try {
 				path2 = file.toURI().toURL().toString();
-				image2.setImage(new Image(path2, true));
+				image2.setImage(new Image(path2));
 				delete2.setVisible(true);
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
@@ -86,9 +88,23 @@ public class AddMessageViewHandler {
 	}
 
 	public void onSaveClicked() {
-		// messageController.insert(message.getText(), "kong",
-		// SessionController.getActuelUserId(), new Date(), path1, path2,
-		// linkAddress, linkTexts, keywordTexts);
+		List<String> linkAddress = new ArrayList<String>();
+		List<String> linkTexts = new ArrayList<String>();
+		List<String> keywordTexts = new ArrayList<String>();
+
+		linkAddress.add(link.getText());
+		linkAddress.add(link.getText());
+		linkTexts.add(linktext.getText());
+		linkTexts.add(linktext.getText());
+		String[] keys = keywords.getText().split(",");
+		for (int i = 0; i < keys.length; i++) {
+			keywordTexts.add(keys[i]);
+		}
+		messageController.insert(message.getText(), "kong", SessionController.getActuelUserId(), new Date(), path1,
+				path2, linkAddress, linkTexts, keywordTexts);
+		save.setDisable(true);
+		addimages.setDisable(true);
+		//this.stage.close();
 	}
 
 	public void onDel1Clicked() {

@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -31,6 +32,8 @@ public class SignupViewHandler {
 	private PasswordField cpsd;
 	@FXML
 	private Label info;
+	@FXML
+	private Button signup;
 
 	private UserController userController = SessionController.getUserController();
 
@@ -48,6 +51,8 @@ public class SignupViewHandler {
 					null);
 			info.setText("Success!");
 			info.setVisible(true);
+			signup.setDisable(true);
+			
 		}
 	}
 
