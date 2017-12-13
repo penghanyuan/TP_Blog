@@ -59,7 +59,7 @@ public class App {
 		usr.setUserName("penghanyuan");
 		usr.setPassword("123");
 		
-		messageController.insert("Hello", "Hello World !", date, usr, images, links, keywords);
+		messageController.insert("Hello", "Hello World !", date, usr, null, null, null);
 		messageController.insert("Goodbye", "Goodbye World !", date, usr, images, links, keywords);
 		LoginView loginView = new LoginView();
 		loginView.run(args);

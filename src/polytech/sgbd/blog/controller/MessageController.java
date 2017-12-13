@@ -82,7 +82,7 @@ public class MessageController {
 		return messageDAO.selectByUserId(userId);
 	}
 
-	public List<Message> getByDate(Date date) {
+	public List<Message> getByDate(String date) {
 		return messageDAO.selectByDate(date);
 	}
 
@@ -90,7 +90,7 @@ public class MessageController {
 		return messageDAO.selectById(id);
 	}
 
-	public List<Message> getByKeyword(Keyword keyword) {
+	public List<Message> getByKeyword(String keyword) {
 		return messageDAO.selectByKeyword(keyword);
 	}
 

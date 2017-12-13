@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="757.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="polytech.sgbd.blog.view.viewHandler.MessageViewHandler">
+   <children>
+      <TextArea fx:id="message" centerShape="false" editable="false" focusTraversable="false" layoutX="69.0" layoutY="64.0" prefHeight="150.0" prefWidth="460.0" promptText="Message" scaleShape="false" />
+      <Button fx:id="addimages" layoutX="69.0" layoutY="474.0" mnemonicParsing="false" onMouseClicked="#onAddImagesClicked" text="Add images" visible="false" />
+      <ImageView fx:id="image1" fitHeight="150.0" fitWidth="200.0" layoutX="70.0" layoutY="531.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="image2" fitHeight="150.0" fitWidth="200.0" layoutX="330.0" layoutY="531.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="save" layoutX="270.0" layoutY="714.0" mnemonicParsing="false" onMouseClicked="#onSaveClicked" text="Save" visible="false" />
+      <TextField fx:id="link1" editable="false" layoutX="70.0" layoutY="317.0" prefHeight="27.0" prefWidth="460.0" promptText="Link 1" />
+      <TextField fx:id="linktext1" editable="false" layoutX="69.0" layoutY="276.0" promptText="Link text 1" />
+      <TextField fx:id="keywords" editable="false" layoutX="69.0" layoutY="231.0" promptText="Key Words(Spilited by ,)" />
+      <Button fx:id="delete1" layoutX="141.0" layoutY="687.0" mnemonicParsing="false" onMouseClicked="#onDel1Clicked" text="Delete" visible="false" />
+      <Button fx:id="delete2" layoutX="401.0" layoutY="687.0" mnemonicParsing="false" onMouseClicked="#onDel2Clicked" text="Delete" visible="false" />
+      <Button fx:id="delete" layoutX="35.0" layoutY="714.0" mnemonicParsing="false" text="Delete" />
+      <Button fx:id="edit" layoutX="524.0" layoutY="714.0" mnemonicParsing="false" onMouseClicked="#onEditClicked" text="Edit" />
+      <TextField fx:id="linktext2" editable="false" layoutX="69.0" layoutY="357.0" promptText="Link text 2" />
+      <TextField fx:id="link2" editable="false" layoutX="70.0" layoutY="401.0" prefHeight="27.0" prefWidth="460.0" promptText="Link 2" />
+      <TextField fx:id="title" editable="false" layoutX="69.0" layoutY="14.0" promptText="Title" />
+   </children>
+</Pane>

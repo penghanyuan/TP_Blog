@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import polytech.sgbd.blog.controller.MessageController;
 import polytech.sgbd.blog.controller.SessionController;
@@ -24,24 +25,37 @@ public class MainPageViewHandler {
 	@FXML
 	private Button add;
 	@FXML
-	private Button search;
+	private Button search1;
 	@FXML
-	private ListView<String> searchresult;
+	private Button search2;
+	@FXML
+	private Button search3;
+	@FXML
+	private TextField username;
+	@FXML
+	private TextField date;
+	@FXML
+	private TextField keyword;
+	@FXML
+	private ListView<Message> searchresult;
 
 	private List<Message> messageList;
 
 	private MessageController messageController = SessionController.getMessageController();
 
-	private void refreshList(){
+	private void refreshList() {
 		messageList = messageController.getByUserId(SessionController.getActuelUserId());
 		ObservableList<Message> msgList = FXCollections.observableArrayList(messageList);
 		list.setFixedCellSize(100);
 		list.setItems(msgList);
 		list.refresh();
 	}
+
 	@FXML
 	protected void initialize() {
 		this.refreshList();
+		ObservableList<Message> strList = FXCollections.observableArrayList(messageController.getAll());
+		searchresult.setItems(strList);
 		list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Message>() {
 			public void changed(ObservableValue<? extends Message> observable, Message oldValue, Message newValue) {
 				MessageView msgView = new MessageView();
@@ -50,7 +64,7 @@ public class MainPageViewHandler {
 				list.setDisable(true);
 				stage.setOnCloseRequest(event -> {
 					list.setDisable(false);
-					list.refresh();
+					// refreshList();
 				});
 			}
 		});
@@ -67,9 +81,21 @@ public class MainPageViewHandler {
 
 	}
 
-	public void onSearchClicked() {
-		ObservableList<String> strList = FXCollections.observableArrayList("红色", "黄色", "绿色", "绿色", "绿色", "绿色", "绿色",
-				"绿色", "绿色");
+	public void onSearch1Clicked() {
+		
+	}
+
+	public void onSearch2Clicked() {
+//		messageController.getByDate(date.getText());
+//		ObservableList<Message> strList = FXCollections.observableArrayList(messageController.getByDate(date.getText()));
+//		searchresult.setFixedCellSize(100);
+//		searchresult.setItems(strList);
+//		list.refresh();
+	}
+
+	public void onSearch3Clicked() {
+		
+		ObservableList<Message> strList = FXCollections.observableArrayList(messageController.getByKeyword(keyword.getText()));
 		searchresult.setFixedCellSize(100);
 		searchresult.setItems(strList);
 		list.refresh();

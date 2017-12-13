@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import javassist.compiler.ast.Keyword;
+import polytech.sgbd.blog.model.KeyWord;
 import polytech.sgbd.blog.model.Message;
 
 public class MessageDAO {
@@ -56,9 +57,9 @@ public class MessageDAO {
 		return results;
 	} 
 
-	public List<Message> selectByDate(Date date) {
+	public List<Message> selectByDate(String date) {
 		/*
-		String sql = "select message from Message message where message.date = :date";
+		String sql = "select message from Message message where message.date like %:date%";
 		Query query = em.createQuery(sql);
 		query.setParameter("date", date);
 		List<Message> messages = new ArrayList<Message>();
@@ -66,25 +67,45 @@ public class MessageDAO {
 
 		return messages;
 		*/
-		String sql = "select message from Message message where message.date = :date";
+		String sql = "select message from Message message where message.date like %:date%";
 		TypedQuery<Message> query = em.createQuery(sql, Message.class);
 		query.setParameter("date", date);
 		List<Message> results = query.getResultList();
 		return results;
 	}
 
-	public List<Message> selectByKeyword(Keyword keyword) {
-		String sql = "select message from Message message where message.keyword = :keyword";
-		TypedQuery<Message> query = em.createQuery(sql, Message.class);
+	public List<Message> selectByKeyword(String keyword) {
+		//String sql = "select message from Message message where message.date like %:date%";
+		String sql = "select keyword from KeyWord keyword where keyword.text = :keyword";
+		Query query = em.createQuery(sql);
 		query.setParameter("keyword", keyword);
-		List<Message> results = query.getResultList();
-		return results;
+		List<Message> messages = new ArrayList<Message>();
+		for(KeyWord k :(List<KeyWord>)query.getResultList()){
+			messages.add(k.getMessage());
+		}
+		return messages;
+//		String sql = "select message from Message message where message.keyword.text like %:keyword%";
+//		TypedQuery<Message> query = em.createQuery(sql, Message.class);
+//		query.setParameter("keyword", keyword);
+//		List<Message> results = query.getResultList();
+//		return results;
 	}
 
 	public Message selectById(int id) {
-		return em.find(Message.class, id);
+		String sql = "select message from Message message where message.id = :id";
+		TypedQuery<Message> query = em.createQuery(sql, Message.class);
+		query.setParameter("id", id);
+		Message result = query.getSingleResult();
+		return result;
 	}
 
+	public Message selectByText(String text) {
+		String sql = "select message from Message message where message.text like %:text%";
+		TypedQuery<Message> query = em.createQuery(sql, Message.class);
+		query.setParameter("text", text);
+		Message result = query.getSingleResult();
+		return result;
+	}
 	public void deleteById(int id) {
 		Message message = em.find(Message.class, 1);
 

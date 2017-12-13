@@ -27,9 +27,15 @@ public class AddMessageViewHandler {
 	@FXML
 	private TextArea message;
 	@FXML
-	private TextField link;
+	private TextField title;
 	@FXML
-	private TextField linktext;
+	private TextField link1;
+	@FXML
+	private TextField linktext1;
+	@FXML
+	private TextField link2;
+	@FXML
+	private TextField linktext2;
 	@FXML
 	private TextField keywords;
 	@FXML
@@ -92,18 +98,20 @@ public class AddMessageViewHandler {
 		List<String> linkTexts = new ArrayList<String>();
 		List<String> keywordTexts = new ArrayList<String>();
 
-		linkAddress.add(link.getText());
-		linkAddress.add(link.getText());
-		linkTexts.add(linktext.getText());
-		linkTexts.add(linktext.getText());
+		linkAddress.add(link1.getText());
+		linkAddress.add(link2.getText());
+		linkTexts.add(linktext1.getText());
+		linkTexts.add(linktext2.getText());
 		String[] keys = keywords.getText().split(",");
 		for (int i = 0; i < keys.length; i++) {
 			keywordTexts.add(keys[i]);
 		}
-		messageController.insert(message.getText(), "kong", SessionController.getActuelUserId(), new Date(), path1,
+		messageController.insert(message.getText(), title.getText(), SessionController.getActuelUserId(), new Date(), path1,
 				path2, linkAddress, linkTexts, keywordTexts);
 		save.setDisable(true);
 		addimages.setDisable(true);
+		delete1.setVisible(false);
+		delete2.setVisible(false);
 		//this.stage.close();
 	}
 
