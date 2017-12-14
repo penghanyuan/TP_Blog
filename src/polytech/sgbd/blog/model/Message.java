@@ -111,7 +111,14 @@ public class Message {
 
 	@Override
 	public String toString() {
-		return this.text + "\n\n" + this.date;
+		String k = "";
+		if (this.keyWords != null) {
+			for (int i = 0; i < this.keyWords.size(); i++) {
+				k += "#" + this.keyWords.get(i).getText();
+			}
+		}
+
+		return this.title + "\n\n\t" + this.text + "\t" + k + "\n\n" + this.date + "\t\t\t @" + this.user.getUserName();
 	}
 
 }

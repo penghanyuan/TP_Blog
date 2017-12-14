@@ -76,7 +76,7 @@ public class App {
 		textNew.add("new1");
 		textNew.add("new2");
 
-		messageController.modifyById(2, "OKOK", "Hey", "xxx", "yyy", null, addrNew, textNew, keywordsNew);
+		//messageController.modifyById(2, "OKOK", "Hey", "xxx", "yyy", null, addrNew, textNew, keywordsNew);
 		LoginView loginView = new LoginView();
 		loginView.run(args);
 //		for(Message message : messageController.getAll()){

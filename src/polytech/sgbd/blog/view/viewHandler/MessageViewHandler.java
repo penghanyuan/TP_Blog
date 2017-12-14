@@ -68,7 +68,6 @@ public class MessageViewHandler {
 
 	@FXML
 	protected void initialize() {
-		System.out.println("now" + SessionController.getOpenMessageId());
 		msg = messageController.getById(SessionController.getOpenMessageId());
 		message.setText(msg.getText());
 		title.setText(msg.getTitle());
@@ -176,8 +175,9 @@ public class MessageViewHandler {
 		for (int i = 0; i < keys.length; i++) {
 			keywordTexts.add(keys[i]);
 		}
-		messageController.insert(message.getText(), title.getText(), SessionController.getActuelUserId(), new Date(),
-				path1, path2, linkAddress, linkTexts, keywordTexts);
+	
+		messageController.modifyMessage(msg,message.getText(), title.getText(), 
+				path1, path2, new Date(),linkAddress, linkTexts, keywordTexts);
 		save.setDisable(true);
 		addimages.setDisable(true);
 		// this.stage.close();

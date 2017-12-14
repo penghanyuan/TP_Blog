@@ -16,6 +16,7 @@ import polytech.sgbd.blog.controller.MessageController;
 import polytech.sgbd.blog.controller.SessionController;
 import polytech.sgbd.blog.model.Message;
 import polytech.sgbd.blog.view.AddMessageView;
+import polytech.sgbd.blog.view.LoginView;
 import polytech.sgbd.blog.view.MessageView;
 
 public class MainPageViewHandler {
@@ -46,26 +47,37 @@ public class MainPageViewHandler {
 	private void refreshList() {
 		messageList = messageController.getByUserId(SessionController.getActuelUserId());
 		ObservableList<Message> msgList = FXCollections.observableArrayList(messageList);
-		list.setFixedCellSize(100);
+		//list.setFixedCellSize(100);
+		ObservableList<Message> strList = FXCollections.observableArrayList(messageController.getAll());
+		searchresult.setItems(strList);
 		list.setItems(msgList);
 		list.refresh();
+		
 	}
 
 	@FXML
 	protected void initialize() {
 		this.refreshList();
-		ObservableList<Message> strList = FXCollections.observableArrayList(messageController.getAll());
-		searchresult.setItems(strList);
+		
+		list.minHeight(100);
+		list.autosize();
+		searchresult.minHeight(100);
+		searchresult.autosize();
+		
 		list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Message>() {
 			public void changed(ObservableValue<? extends Message> observable, Message oldValue, Message newValue) {
 				MessageView msgView = new MessageView();
-				SessionController.setOpenMessageId(observable.getValue().getId());
-				Stage stage = msgView.showMessage();
-				list.setDisable(true);
-				stage.setOnCloseRequest(event -> {
-					list.setDisable(false);
-					// refreshList();
-				});
+				if (observable.getValue() != null) {
+					SessionController.setOpenMessageId(observable.getValue().getId());
+					Stage stage = msgView.showMessage();
+					list.setDisable(true);
+					stage.setOnCloseRequest(event -> {
+						list.getSelectionModel().clearSelection();
+						list.setDisable(false);
+						SessionController.setOpenMessageId(0);
+					});
+				}
+
 			}
 		});
 	}
@@ -76,29 +88,42 @@ public class MainPageViewHandler {
 		add.setDisable(true);
 		stage.setOnCloseRequest(event -> {
 			add.setDisable(false);
-			this.refreshList();
 		});
 
 	}
 
 	public void onSearch1Clicked() {
-		
+
 	}
 
 	public void onSearch2Clicked() {
-//		messageController.getByDate(date.getText());
-//		ObservableList<Message> strList = FXCollections.observableArrayList(messageController.getByDate(date.getText()));
-//		searchresult.setFixedCellSize(100);
-//		searchresult.setItems(strList);
-//		list.refresh();
+		// messageController.getByDate(date.getText());
+		// ObservableList<Message> strList =
+		// FXCollections.observableArrayList(messageController.getByDate(date.getText()));
+		// searchresult.setFixedCellSize(100);
+		// searchresult.setItems(strList);
+		// list.refresh();
 	}
 
 	public void onSearch3Clicked() {
-		
-		ObservableList<Message> strList = FXCollections.observableArrayList(messageController.getByKeyword(keyword.getText()));
-		searchresult.setFixedCellSize(100);
+
+		ObservableList<Message> strList = FXCollections
+				.observableArrayList(messageController.getByKeyword(keyword.getText()));
 		searchresult.setItems(strList);
-		list.refresh();
+		searchresult.refresh();
+	}
+
+	public void onRefreshClicked() {
+		this.refreshList();
+		SessionController.setOpenMessageId(0);
+	}
+
+	public void onLogoutClicked() {
+		SessionController.setActuelUserId(0);
+		SessionController.setOpenMessageId(0);
+		LoginView lv = new LoginView();
+		System.out.println("logout");
+		LoginView.getStage().setScene(lv.getScene());
 	}
 
 }
