@@ -109,7 +109,9 @@ public class MessageDAO {
 
 	public void deleteById(int id) {
 		Message message = em.find(Message.class, id);
+		em.getTransaction().begin();
 		em.remove(message);
+		em.getTransaction().commit();
 	}
 
 	public void modifyById(Message message) {
