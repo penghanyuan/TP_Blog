@@ -53,9 +53,9 @@ public class MessageDAO {
 	}
 
 	public List<Message> selectByUsername(String username) {
-		String sql = "select message from Message message where message.user.username = :username";
+		String sql = "select message from Message message where message.user.userName like :username";
 		TypedQuery<Message> query = em.createQuery(sql, Message.class);
-		query.setParameter("username", username);
+		query.setParameter("username", "%" + username + "%");
 		List<Message> results = query.getResultList();
 		return results;
 	}
@@ -70,9 +70,9 @@ public class MessageDAO {
 		 * 
 		 * return messages;
 		 */
-		String sql = "select message from Message message where message.date like %:date%";
-		TypedQuery<Message> query = em.createQuery(sql, Message.class);
-		query.setParameter("date", date);
+		String sql = "select message from Message message where DATE_FORMAT(message.date,'%Y-%m-%d') like :date";
+		Query query = em.createQuery(sql);
+		query.setParameter("date", "%" + date + "%");
 		List<Message> results = query.getResultList();
 		return results;
 	}

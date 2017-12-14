@@ -1,6 +1,8 @@
 package polytech.sgbd.blog.view.viewHandler;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javafx.beans.value.ChangeListener;
@@ -9,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -18,6 +21,7 @@ import polytech.sgbd.blog.model.Message;
 import polytech.sgbd.blog.view.AddMessageView;
 import polytech.sgbd.blog.view.LoginView;
 import polytech.sgbd.blog.view.MessageView;
+import polytech.sgbd.blog.view.SearchMessageView;
 
 public class MainPageViewHandler {
 
@@ -34,7 +38,7 @@ public class MainPageViewHandler {
 	@FXML
 	private TextField username;
 	@FXML
-	private TextField date;
+	private DatePicker date;
 	@FXML
 	private TextField keyword;
 	@FXML
@@ -52,18 +56,17 @@ public class MainPageViewHandler {
 		searchresult.setItems(strList);
 		list.setItems(msgList);
 		list.refresh();
-
+		searchresult.refresh();
 	}
 
 	@FXML
 	protected void initialize() {
 		this.refreshList();
-
 		list.minHeight(100);
 		list.autosize();
 		searchresult.minHeight(100);
 		searchresult.autosize();
-
+		date.setValue(LocalDate.now());
 		list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Message>() {
 			public void changed(ObservableValue<? extends Message> observable, Message oldValue, Message newValue) {
 				MessageView msgView = new MessageView();
@@ -74,6 +77,22 @@ public class MainPageViewHandler {
 					stage.setOnCloseRequest(event -> {
 						list.getSelectionModel().clearSelection();
 						list.setDisable(false);
+						SessionController.setOpenMessageId(0);
+						refreshList();
+					});
+				}
+			}
+		});
+		searchresult.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Message>() {
+			public void changed(ObservableValue<? extends Message> observable, Message oldValue, Message newValue) {
+				SearchMessageView msgView = new SearchMessageView();
+				if (observable.getValue() != null) {
+					SessionController.setOpenMessageId(observable.getValue().getId());
+					Stage stage = msgView.showMessage();
+					searchresult.setDisable(true);
+					stage.setOnCloseRequest(event -> {
+						searchresult.getSelectionModel().clearSelection();
+						searchresult.setDisable(false);
 						SessionController.setOpenMessageId(0);
 						refreshList();
 					});
@@ -94,20 +113,23 @@ public class MainPageViewHandler {
 	}
 
 	public void onSearch1Clicked() {
-
+		ObservableList<Message> strList = FXCollections
+				.observableArrayList(messageController.getByUsername(username.getText()));
+		searchresult.setItems(strList);
+		searchresult.refresh();
+		
 	}
 
 	public void onSearch2Clicked() {
-		// messageController.getByDate(date.getText());
-		// ObservableList<Message> strList =
-		// FXCollections.observableArrayList(messageController.getByDate(date.getText()));
-		// searchresult.setFixedCellSize(100);
-		// searchresult.setItems(strList);
-		// list.refresh();
+	
+		
+		ObservableList<Message> strList = FXCollections
+				.observableArrayList(messageController.getByDate(date.getValue().toString()));
+		searchresult.setItems(strList);
+		searchresult.refresh();
 	}
 
 	public void onSearch3Clicked() {
-
 		ObservableList<Message> strList = FXCollections
 				.observableArrayList(messageController.getByKeyword(keyword.getText()));
 		searchresult.setItems(strList);

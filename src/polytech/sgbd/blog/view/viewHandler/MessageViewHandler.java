@@ -176,8 +176,8 @@ public class MessageViewHandler {
 			keywordTexts.add(keys[i]);
 		}
 
-		messageController.modifyMessage(msg, message.getText(), title.getText(), path1, path2, new Date(), linkAddress,
-				linkTexts, keywordTexts);
+		messageController.modifyMessage(msg, message.getText(), title.getText(), path1, path2,
+				new Date(System.currentTimeMillis()), linkAddress, linkTexts, keywordTexts);
 		save.setDisable(true);
 		addimages.setDisable(true);
 		// this.stage.close();

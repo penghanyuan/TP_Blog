@@ -1,5 +1,9 @@
 package polytech.sgbd.blog.app;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +29,16 @@ public class App {
 //		addressController.insert("China", "Beijing", "100083", "Street East", 2, "c1");
 //		
 		Date date = new Date();
+		
+	
+		DateFormat df= new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
+		try {
+			date = df.parse(df.format(date));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(date.toString());
 //		Address addr = new Address();
 //		userController.insert("LydieXXX", "Tianxue", "Wang", "123", date, null);
 //		
