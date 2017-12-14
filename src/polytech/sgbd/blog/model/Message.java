@@ -1,5 +1,6 @@
 package polytech.sgbd.blog.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -14,8 +15,6 @@ public class Message {
 
 	private String title;
 	private String text;
-
-	@Transient
 	private Date date;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "message")
@@ -111,14 +110,17 @@ public class Message {
 
 	@Override
 	public String toString() {
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
 		String k = "";
 		if (this.keyWords != null) {
 			for (int i = 0; i < this.keyWords.size(); i++) {
-				k += "#" + this.keyWords.get(i).getText();
+				if (!this.keyWords.get(i).getText().equals(""))
+					k += "#" + this.keyWords.get(i).getText();
 			}
 		}
-
-		return this.title + "\n\n\t" + this.text + "\t" + k + "\n\n" + this.date + "\t\t\t @" + this.user.getUserName();
+		return this.title + "\n\n\t" + this.text + "\t" + k + "\n\n" + df.format(this.date) + "\t\t\t @"
+				+ this.user.getUserName();
 	}
 
 }

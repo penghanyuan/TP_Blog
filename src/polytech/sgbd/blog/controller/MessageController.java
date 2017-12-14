@@ -97,6 +97,10 @@ public class MessageController {
 	public void deleteById(int id) {
 		messageDAO.deleteById(id);
 	}
+	
+	public List<Message> getByUsername(String username){
+		return messageDAO.selectByUsername(username);
+	}
 
 	public void modifyMessage(Message message, String newText, String newTitle, String newImagePath1, String newImagePath2,
 			Date date, List<String> linkAddress, List<String> linkTexts, List<String> keywordTexts) {

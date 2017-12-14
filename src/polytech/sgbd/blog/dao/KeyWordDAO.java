@@ -19,6 +19,8 @@ public class KeyWordDAO {
 	}
 	
 	public void delete(KeyWord keyword){
+		//em.getTransaction().begin();
 		em.remove(keyword);
+		
 	}
 }

@@ -1,5 +1,9 @@
 package polytech.sgbd.blog.app;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,6 +32,7 @@ public class App {
 		usr1.setAddress("Grandmont");
 
 		Date date = new Date();
+
 		Image img1_1 = new Image();
 		Image img1_2 = new Image();
 		Link link1_1 = new Link();
@@ -45,6 +50,16 @@ public class App {
 		keyword1_1.setText("hello");
 		keyword1_2.setText("greeting");
 		keyword1_3.setText("tired");
+
+	
+		DateFormat df= new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
+		try {
+			date = df.parse(df.format(date));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(date.toString());
 
 		List<Image> images = new ArrayList<Image>();
 		List<Link> links = new ArrayList<Link>();
