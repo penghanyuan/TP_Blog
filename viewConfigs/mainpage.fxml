@@ -28,6 +28,8 @@
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
                               <Button fx:id="add" layoutX="14.0" layoutY="26.0" mnemonicParsing="false" onMouseClicked="#onAddClicked" text="Add new message" />
+                              <Button fx:id="refresh" layoutX="54.0" layoutY="87.0" mnemonicParsing="false" onMouseClicked="#onRefreshClicked" text="Refresh" />
+                              <Button fx:id="logout" layoutX="44.0" layoutY="606.0" mnemonicParsing="false" onMouseClicked="#onLogoutClicked" text="Disconnect" />
                            </children>
                         </AnchorPane>
                     </items>
