@@ -122,7 +122,6 @@ public class MessageController {
 		for(KeyWord k : message.getKeyWords()){
 			SessionController.getKeywordController().delete(k);
 		}
-		message.getKeyWords().clear();
 		/* Insert the new ones*/
 		List<KeyWord> keywordsNew = new ArrayList<KeyWord>();
 		for (int i = 0; i < keywordTexts.size(); i++) {
