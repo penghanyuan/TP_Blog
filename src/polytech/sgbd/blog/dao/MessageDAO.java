@@ -78,14 +78,21 @@ public class MessageDAO {
 	}
 
 	public List<Message> selectByKeyword(String keyword) {
-		// String sql = "select message from Message message where message.date
-		// like %:date%";
-		String sql = "select keyword from KeyWord keyword where keyword.text = :keyword";
+		String sql = "select keyword from KeyWord keyword where keyword.text like :keyword";
 		Query query = em.createQuery(sql);
-		query.setParameter("keyword", keyword);
+		query.setParameter("keyword", "%" + keyword + "%");
 		List<Message> messages = new ArrayList<Message>();
+		boolean exist;
 		for (KeyWord k : (List<KeyWord>) query.getResultList()) {
-			messages.add(k.getMessage());
+			exist = false;
+			for (Message m : messages) {
+				if (m.getId() == k.getMessage().getId()) {
+					exist = true;
+				}
+			}
+			if (!exist) {
+				messages.add(k.getMessage());
+			}
 		}
 		return messages;
 
