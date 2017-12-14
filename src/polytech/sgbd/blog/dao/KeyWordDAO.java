@@ -17,4 +17,10 @@ public class KeyWordDAO {
 		em.persist(keyword);
 		em.getTransaction().commit();
 	}
+	
+	public void delete(KeyWord keyword){
+		em.getTransaction().begin();
+		em.remove(keyword);
+		em.getTransaction().commit();
+	}
 }

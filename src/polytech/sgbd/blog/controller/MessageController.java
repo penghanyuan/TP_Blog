@@ -98,7 +98,45 @@ public class MessageController {
 		messageDAO.deleteById(id);
 	}
 
-	public void modifyById(int id, String newText) {
-		messageDAO.modifyById(id, newText);
+	public void modifyById(int id, String newText, String newTitle, String newImagePath1, String newImagePath2,
+			Date date, List<String> linkAddress, List<String> linkTexts, List<String> keywordTexts) {
+
+		Message message = messageDAO.selectById(id);
+
+		/* Modify the images */
+		Image image1 = message.getImages().get(0);
+		image1.setPath(newImagePath1);
+
+		Image image2 = message.getImages().get(1);
+		image2.setPath(newImagePath2);
+
+		/* Modify the links */
+		for (int i = 0; i < message.getLinks().size(); i++) {
+			Link link = message.getLinks().get(i);
+			link.setAddress(linkAddress.get(i));
+			link.setText(linkTexts.get(i));
+		}
+
+		/* Modify the keywords */
+		/* Delete the old keywords*/
+		for(KeyWord k : message.getKeyWords()){
+			SessionController.getKeywordController().delete(k);
+		}
+		message.getKeyWords().clear();
+		/* Insert the new ones*/
+		List<KeyWord> keywordsNew = new ArrayList<KeyWord>();
+		for (int i = 0; i < keywordTexts.size(); i++) {
+			KeyWord keyword = new KeyWord();
+			keyword.setText(keywordTexts.get(i));
+			keywordsNew.add(keyword);
+		}
+		
+		message.setKeyWords(keywordsNew);
+		message.setText(newText);
+		message.setTitle(newTitle);
+		message.setDate(date);
+
+		messageDAO.modifyById(message);
+
 	}
 }

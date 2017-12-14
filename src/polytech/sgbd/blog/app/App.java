@@ -61,6 +61,22 @@ public class App {
 		
 		messageController.insert("Hello", "Hello World !", date, usr, null, null, null);
 		messageController.insert("Goodbye", "Goodbye World !", date, usr, images, links, keywords);
+		
+		List<String> keywordsNew = new ArrayList<String>();
+		keywordsNew.add("new1");
+		keywordsNew.add("new2");
+		keywordsNew.add("new3");
+		keywordsNew.add("new4");
+		
+		List<String> addrNew = new ArrayList<String>();
+		addrNew.add("new1");
+		addrNew.add("new2");
+		
+		List<String> textNew = new ArrayList<String>();
+		textNew.add("new1");
+		textNew.add("new2");
+
+		messageController.modifyById(2, "OKOK", "Hey", "xxx", "yyy", null, addrNew, textNew, keywordsNew);
 		LoginView loginView = new LoginView();
 		loginView.run(args);
 //		for(Message message : messageController.getAll()){

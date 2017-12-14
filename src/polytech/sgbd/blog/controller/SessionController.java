@@ -9,6 +9,7 @@ public class SessionController {
 	private static EntityManager em = emf.createEntityManager();
 	private static UserController userController = new UserController(em);
 	private static MessageController messageController = new MessageController(em);
+	private static KeywordController keywordController = new KeywordController(em);
 
 	private static int actuelUserId;
 	
@@ -32,6 +33,10 @@ public class SessionController {
 
 	public static MessageController getMessageController() {
 		return messageController;
+	}
+
+	public static KeywordController getKeywordController() {
+		return keywordController;
 	}
 
 	public static int getOpenMessageId() {

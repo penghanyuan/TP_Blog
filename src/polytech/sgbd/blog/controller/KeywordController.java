@@ -19,4 +19,9 @@ public class KeywordController {
 		keywordDAO.insert(keyword);
 	}
 	*/
+	
+	public void delete(KeyWord keyword){
+		KeyWordDAO keywordDAO = new KeyWordDAO(em);
+		keywordDAO.delete(keyword);	
+	}
 }

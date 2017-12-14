@@ -92,13 +92,13 @@ public class MessageViewHandler {
 			} catch (Exception e) {
 				image1.setImage(null);
 			}
+			path1 = msg.getImages().get(0).getPath();
 			try {
 				image2.setImage(new Image(msg.getImages().get(1).getPath()));
 			} catch (Exception e) {
 				image2.setImage(null);
 			}
-
-
+			path2 = msg.getImages().get(1).getPath();
 		}
 
 	}
