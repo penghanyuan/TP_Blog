@@ -21,7 +21,7 @@
                   <TextField fx:id="keywords" editable="false" layoutX="58.0" layoutY="230.0" promptText="Key Words(Spilited by ,)" />
                   <Button fx:id="delete1" layoutX="120.0" layoutY="653.0" mnemonicParsing="false" onMouseClicked="#onDel1Clicked" text="Delete" visible="false" />
                   <Button fx:id="delete2" layoutX="427.0" layoutY="653.0" mnemonicParsing="false" onMouseClicked="#onDel2Clicked" text="Delete" visible="false" />
-                  <Button fx:id="delete" layoutX="58.0" layoutY="698.0" mnemonicParsing="false" text="Delete" />
+                  <Button fx:id="delete" layoutX="58.0" layoutY="698.0" mnemonicParsing="false" onMouseClicked="#onDeleteClicked" text="Delete" />
                   <Button fx:id="edit" layoutX="537.0" layoutY="698.0" mnemonicParsing="false" onMouseClicked="#onEditClicked" text="Edit" />
                   <TextField fx:id="linktext2" editable="false" layoutX="58.0" layoutY="352.0" promptText="Link text 2" />
                   <TextField fx:id="link2" editable="false" layoutX="58.0" layoutY="395.0" prefHeight="27.0" prefWidth="460.0" promptText="Link 2" />

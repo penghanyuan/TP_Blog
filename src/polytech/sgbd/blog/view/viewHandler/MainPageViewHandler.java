@@ -47,23 +47,23 @@ public class MainPageViewHandler {
 	private void refreshList() {
 		messageList = messageController.getByUserId(SessionController.getActuelUserId());
 		ObservableList<Message> msgList = FXCollections.observableArrayList(messageList);
-		//list.setFixedCellSize(100);
+		// list.setFixedCellSize(100);
 		ObservableList<Message> strList = FXCollections.observableArrayList(messageController.getAll());
 		searchresult.setItems(strList);
 		list.setItems(msgList);
 		list.refresh();
-		
+
 	}
 
 	@FXML
 	protected void initialize() {
 		this.refreshList();
-		
+
 		list.minHeight(100);
 		list.autosize();
 		searchresult.minHeight(100);
 		searchresult.autosize();
-		
+
 		list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Message>() {
 			public void changed(ObservableValue<? extends Message> observable, Message oldValue, Message newValue) {
 				MessageView msgView = new MessageView();
@@ -75,9 +75,9 @@ public class MainPageViewHandler {
 						list.getSelectionModel().clearSelection();
 						list.setDisable(false);
 						SessionController.setOpenMessageId(0);
+						refreshList();
 					});
 				}
-
 			}
 		});
 	}
@@ -88,6 +88,7 @@ public class MainPageViewHandler {
 		add.setDisable(true);
 		stage.setOnCloseRequest(event -> {
 			add.setDisable(false);
+			refreshList();
 		});
 
 	}
