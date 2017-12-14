@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
-import polytech.sgbd.blog.model.Message;
 import polytech.sgbd.blog.model.User;
 
 public class UserDAO {

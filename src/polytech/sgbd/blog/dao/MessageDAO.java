@@ -1,18 +1,13 @@
 package polytech.sgbd.blog.dao;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import javassist.compiler.ast.Keyword;
-import polytech.sgbd.blog.controller.SessionController;
-import polytech.sgbd.blog.model.Image;
 import polytech.sgbd.blog.model.KeyWord;
-import polytech.sgbd.blog.model.Link;
 import polytech.sgbd.blog.model.Message;
 
 public class MessageDAO {

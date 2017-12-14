@@ -16,6 +16,7 @@ public class User {
 	private String lastName;
 	private String password;
 	private String address;
+	private String email;
 	
 	@Transient
 	private Date createdDate;
@@ -98,6 +99,13 @@ public class User {
 			}
 		}
 	}
-	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
 }
