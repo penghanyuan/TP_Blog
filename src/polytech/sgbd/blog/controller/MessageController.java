@@ -96,15 +96,16 @@ public class MessageController {
 	public void deleteById(int id) {
 		messageDAO.deleteById(id);
 	}
-	
-	public List<Message> getByUsername(String username){
+
+	public List<Message> getByUsername(String username) {
 		return messageDAO.selectByUsername(username);
 	}
 
-	public void modifyMessage(Message message, String newText, String newTitle, String newImagePath1, String newImagePath2,
-			Date date, List<String> linkAddress, List<String> linkTexts, List<String> keywordTexts) {
-		//在修改时需要注意对提取出来的对象进行修改，（或许hibernate在实现时采用了某种单例模式，
-		//多次从数据库中搜索同一个id的对象时第二次会无法获取相关对象）
+	public void modifyMessage(Message message, String newText, String newTitle, String newImagePath1,
+			String newImagePath2, Date date, List<String> linkAddress, List<String> linkTexts,
+			List<String> keywordTexts) {
+		// 在修改时需要注意对提取出来的对象进行修改，（或许hibernate在实现时采用了某种单例模式，
+		// 多次从数据库中搜索同一个id的对象时第二次会无法获取相关对象）
 		/* Modify the images */
 		Image image1 = message.getImages().get(0);
 		image1.setPath(newImagePath1);
@@ -120,18 +121,18 @@ public class MessageController {
 		}
 
 		/* Modify the keywords */
-		/* Delete the old keywords*/
-		for(Keyword k : message.getKeyWords()){
+		/* Delete the old keywords */
+		for (Keyword k : message.getKeyWords()) {
 			SessionController.getKeywordController().delete(k);
 		}
-		/* Insert the new ones*/
+		/* Insert the new ones */
 		List<Keyword> keywordsNew = new ArrayList<Keyword>();
 		for (int i = 0; i < keywordTexts.size(); i++) {
 			Keyword keyword = new Keyword();
 			keyword.setText(keywordTexts.get(i));
 			keywordsNew.add(keyword);
 		}
-		
+
 		message.setKeyWords(keywordsNew);
 		message.setText(newText);
 		message.setTitle(newTitle);
