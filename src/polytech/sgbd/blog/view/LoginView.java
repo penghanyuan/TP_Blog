@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 public class LoginView extends Application {
 	private static Stage stage;
@@ -23,6 +24,12 @@ public class LoginView extends Application {
 		primaryStage.setScene(this.getScene());
 		primaryStage.setTitle("Login");
 		primaryStage.show();
+		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                System.exit(0);
+            }
+        });
 
 	}
 

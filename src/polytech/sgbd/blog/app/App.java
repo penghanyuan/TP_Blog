@@ -111,13 +111,7 @@ public class App {
 		/*View*/
 		LoginView loginView = new LoginView();
 		loginView.run(args);
-		// for(Message message : messageController.getAll()){
-		// System.out.println(message.getText().toString());
-		// }
-		//
-		// for(User user : userController.getAll()){
-		// System.out.println(user.getUserName().toString());
-		// }
+		
 	}
 
 }
