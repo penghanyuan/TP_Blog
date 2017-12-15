@@ -46,9 +46,9 @@ public class App {
 		Image img1_2 = new Image();
 		Link link1_1 = new Link();
 		Link link1_2 = new Link();
-		KeyWord keyword1_1 = new KeyWord();
-		KeyWord keyword1_2 = new KeyWord();
-		KeyWord keyword1_3 = new KeyWord();
+		Keyword keyword1_1 = new Keyword();
+		Keyword keyword1_2 = new Keyword();
+		Keyword keyword1_3 = new Keyword();
 
 		img1_1.setPath("path img01");
 		img1_2.setPath("path img02");
@@ -65,8 +65,8 @@ public class App {
 
 		List<Image> images = new ArrayList<Image>();
 		List<Link> links = new ArrayList<Link>();
-		List<KeyWord> keywords1_1 = new ArrayList<KeyWord>();
-		List<KeyWord> keywords1_2 = new ArrayList<KeyWord>();
+		List<Keyword> keywords1_1 = new ArrayList<Keyword>();
+		List<Keyword> keywords1_2 = new ArrayList<Keyword>();
 
 		images.add(img1_1);
 		images.add(img1_2);
@@ -89,16 +89,16 @@ public class App {
 		usr1.setCreatedDate(new Date());
 		usr1.setAddress("Alouette");
 
-		KeyWord keyword2_1 = new KeyWord();
-		KeyWord keyword2_2 = new KeyWord();
-		KeyWord keyword2_3 = new KeyWord();
+		Keyword keyword2_1 = new Keyword();
+		Keyword keyword2_2 = new Keyword();
+		Keyword keyword2_3 = new Keyword();
 
 		keyword2_1.setText("blog");
 		keyword2_2.setText("cute");
 		keyword2_3.setText("dog");
 
-		List<KeyWord> keywords2_1 = new ArrayList<KeyWord>();
-		List<KeyWord> keywords2_2 = new ArrayList<KeyWord>();
+		List<Keyword> keywords2_1 = new ArrayList<Keyword>();
+		List<Keyword> keywords2_2 = new ArrayList<Keyword>();
 		
 		keywords2_1.add(keyword2_1);
 		keywords2_1.add(keyword2_2);

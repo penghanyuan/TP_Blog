@@ -19,7 +19,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import polytech.sgbd.blog.controller.MessageController;
 import polytech.sgbd.blog.controller.SessionController;
-import polytech.sgbd.blog.model.KeyWord;
+import polytech.sgbd.blog.model.Keyword;
 import polytech.sgbd.blog.model.Message;
 
 public class MessageViewHandler {
@@ -79,7 +79,7 @@ public class MessageViewHandler {
 		}
 		if (msg.getKeyWords() != null) {
 			String kwords = "";
-			for (KeyWord k : msg.getKeyWords()) {
+			for (Keyword k : msg.getKeyWords()) {
 				kwords += k.getText() + ",";
 			}
 			kwords = kwords.substring(0, kwords.length() - 1);

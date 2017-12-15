@@ -9,7 +9,7 @@
    <children>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
-            <TextField fx:id="username" layoutX="116.0" layoutY="56.0" promptText="Username or email" />
+            <TextField fx:id="username" layoutX="116.0" layoutY="56.0" promptText="Username" />
             <Label layoutX="36.0" layoutY="61.0" text="UserName" />
             <Label layoutX="39.0" layoutY="136.0" text="Password" />
             <Button fx:id="login" layoutX="88.0" layoutY="188.0" mnemonicParsing="false" onMouseClicked="#onLoginClicked" text="Log In" />

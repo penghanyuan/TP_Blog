@@ -3,7 +3,7 @@ package polytech.sgbd.blog.model;
 import javax.persistence.*;
 
 @Entity
-public class KeyWord {
+public class Keyword {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

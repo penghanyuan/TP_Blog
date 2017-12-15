@@ -24,7 +24,7 @@ public class Message {
 	private List<Image> images;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "message")
-	private List<KeyWord> keyWords;
+	private List<Keyword> keyWords;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private User user;
@@ -87,14 +87,14 @@ public class Message {
 		}
 	}
 
-	public List<KeyWord> getKeyWords() {
+	public List<Keyword> getKeyWords() {
 		return keyWords;
 	}
 
-	public void setKeyWords(List<KeyWord> keyWords) {
+	public void setKeyWords(List<Keyword> keyWords) {
 		this.keyWords = keyWords;
 		if (keyWords != null) {
-			for (KeyWord keyword : keyWords) {
+			for (Keyword keyword : keyWords) {
 				keyword.setMessage(this);
 			}
 		}

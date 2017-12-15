@@ -2,7 +2,7 @@ package polytech.sgbd.blog.dao;
 
 import javax.persistence.EntityManager;
 
-import polytech.sgbd.blog.model.KeyWord;
+import polytech.sgbd.blog.model.Keyword;
 
 public class KeyWordDAO {
 
@@ -12,13 +12,13 @@ public class KeyWordDAO {
 		this.em = em;
 	}
 	
-	public void insert(KeyWord keyword){
+	public void insert(Keyword keyword){
 		em.getTransaction().begin();
 		em.persist(keyword);
 		em.getTransaction().commit();
 	}
 	
-	public void delete(KeyWord keyword){
+	public void delete(Keyword keyword){
 		//em.getTransaction().begin();
 		em.remove(keyword);
 		

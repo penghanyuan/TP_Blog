@@ -2,7 +2,7 @@ package polytech.sgbd.blog.controller;
 
 import javax.persistence.EntityManager;
 import polytech.sgbd.blog.dao.KeyWordDAO;
-import polytech.sgbd.blog.model.KeyWord;
+import polytech.sgbd.blog.model.Keyword;
 
 public class KeywordController {
 	private EntityManager em;
@@ -20,7 +20,7 @@ public class KeywordController {
 	}
 	*/
 	
-	public void delete(KeyWord keyword){
+	public void delete(Keyword keyword){
 		KeyWordDAO keywordDAO = new KeyWordDAO(em);
 		keywordDAO.delete(keyword);	
 	}

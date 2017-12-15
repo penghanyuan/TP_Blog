@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import javassist.compiler.ast.Keyword;
 import polytech.sgbd.blog.dao.MessageDAO;
 import polytech.sgbd.blog.model.*;
 
@@ -20,7 +19,7 @@ public class MessageController {
 	}
 
 	public void insert(String title, String text, Date date, User user, List<Image> images, List<Link> links,
-			List<KeyWord> keywords) {
+			List<Keyword> keywords) {
 		Message message = new Message();
 		message.setTitle(title);
 		message.setText(text);
@@ -53,9 +52,9 @@ public class MessageController {
 		images.add(image1);
 		images.add(image2);
 		/* Keywords */
-		List<KeyWord> keywords = new ArrayList<KeyWord>();
+		List<Keyword> keywords = new ArrayList<Keyword>();
 		for (String k : keywordTexts) {
-			KeyWord keyword = new KeyWord();
+			Keyword keyword = new Keyword();
 			keyword.setText(k);
 			keywords.add(keyword);
 		}
@@ -122,13 +121,13 @@ public class MessageController {
 
 		/* Modify the keywords */
 		/* Delete the old keywords*/
-		for(KeyWord k : message.getKeyWords()){
+		for(Keyword k : message.getKeyWords()){
 			SessionController.getKeywordController().delete(k);
 		}
 		/* Insert the new ones*/
-		List<KeyWord> keywordsNew = new ArrayList<KeyWord>();
+		List<Keyword> keywordsNew = new ArrayList<Keyword>();
 		for (int i = 0; i < keywordTexts.size(); i++) {
-			KeyWord keyword = new KeyWord();
+			Keyword keyword = new Keyword();
 			keyword.setText(keywordTexts.get(i));
 			keywordsNew.add(keyword);
 		}

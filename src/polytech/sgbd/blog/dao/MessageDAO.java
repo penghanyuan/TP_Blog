@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import polytech.sgbd.blog.model.KeyWord;
+import polytech.sgbd.blog.model.Keyword;
 import polytech.sgbd.blog.model.Message;
 
 public class MessageDAO {
@@ -78,7 +78,7 @@ public class MessageDAO {
 		query.setParameter("keyword", "%" + keyword + "%");
 		List<Message> messages = new ArrayList<Message>();
 		boolean exist;
-		for (KeyWord k : (List<KeyWord>) query.getResultList()) {
+		for (Keyword k : (List<Keyword>) query.getResultList()) {
 			exist = false;
 			for (Message m : messages) {
 				if (m.getId() == k.getMessage().getId()) {
