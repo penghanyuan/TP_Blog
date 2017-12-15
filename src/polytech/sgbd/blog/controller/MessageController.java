@@ -104,8 +104,6 @@ public class MessageController {
 	public void modifyMessage(Message message, String newText, String newTitle, String newImagePath1,
 			String newImagePath2, Date date, List<String> linkAddress, List<String> linkTexts,
 			List<String> keywordTexts) {
-		// 在修改时需要注意对提取出来的对象进行修改，（或许hibernate在实现时采用了某种单例模式，
-		// 多次从数据库中搜索同一个id的对象时第二次会无法获取相关对象）
 		/* Modify the images */
 		Image image1 = message.getImages().get(0);
 		image1.setPath(newImagePath1);

@@ -107,7 +107,11 @@ public class Message {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
+	
+	
+	/**
+	 * Pour afficher le message
+	 */
 	@Override
 	public String toString() {
 		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");

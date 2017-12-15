@@ -43,7 +43,9 @@ public class LoginViewHandler {
 
 	public void onSignupClicked() throws IOException {
 		SignupView sv = new SignupView();
+		//LoginView.getStage().setTitle("MainPage");
 		LoginView.getStage().setScene(sv.getScene());
+		
 	}
 
 }

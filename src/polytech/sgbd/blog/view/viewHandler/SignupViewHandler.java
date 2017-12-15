@@ -27,6 +27,8 @@ public class SignupViewHandler {
 	@FXML
 	private TextField email;
 	@FXML
+	private TextField address;
+	@FXML
 	private PasswordField psd;
 	@FXML
 	private PasswordField cpsd;
@@ -48,7 +50,7 @@ public class SignupViewHandler {
 		} else {
 			Date date = new Date();
 			userController.insert(username.getText(), firstname.getText(), lastname.getText(), psd.getText(), date,
-					null);
+					address.getText());
 			info.setText("Success!");
 			info.setVisible(true);
 			signup.setDisable(true);

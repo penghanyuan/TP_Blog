@@ -68,29 +68,31 @@ public class AddMessageViewHandler {
 				new FileChooser.ExtensionFilter("JPG", "*.jpg"), new FileChooser.ExtensionFilter("GIF", "*.gif"),
 				new FileChooser.ExtensionFilter("BMP", "*.bmp"), new FileChooser.ExtensionFilter("PNG", "*.png"));
 		File file = fileChooser.showOpenDialog(stage);
-
-		if (!lImage) {
-			try {
-				path1 = file.toURI().toURL().toString();
-				image1.setImage(new Image(path1));
-				delete1.setVisible(true);
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		if (file != null) {
+			if (!lImage) {
+				try {
+					path1 = file.toURI().toURL().toString();
+					image1.setImage(new Image(path1));
+					delete1.setVisible(true);
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				lImage = true;
+			} else if (!rImage) {
+				try {
+					path2 = file.toURI().toURL().toString();
+					image2.setImage(new Image(path2));
+					delete2.setVisible(true);
+				} catch (MalformedURLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				rImage = true;
+				addimages.setDisable(true);
 			}
-			lImage = true;
-		} else if (!rImage) {
-			try {
-				path2 = file.toURI().toURL().toString();
-				image2.setImage(new Image(path2));
-				delete2.setVisible(true);
-			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			rImage = true;
-			addimages.setDisable(true);
 		}
+
 	}
 
 	public void onSaveClicked() {
@@ -106,13 +108,13 @@ public class AddMessageViewHandler {
 		for (int i = 0; i < keys.length; i++) {
 			keywordTexts.add(keys[i]);
 		}
-		messageController.insert(message.getText(), title.getText(), SessionController.getActuelUserId(), new Date(System.currentTimeMillis()), path1,
-				path2, linkAddress, linkTexts, keywordTexts);
+		messageController.insert(message.getText(), title.getText(), SessionController.getActuelUserId(),
+				new Date(System.currentTimeMillis()), path1, path2, linkAddress, linkTexts, keywordTexts);
 		save.setDisable(true);
 		addimages.setDisable(true);
 		delete1.setVisible(false);
 		delete2.setVisible(false);
-		//this.stage.close();
+		// this.stage.close();
 	}
 
 	public void onDel1Clicked() {

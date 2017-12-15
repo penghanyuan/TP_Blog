@@ -146,7 +146,9 @@ public class MainPageViewHandler {
 		SessionController.setOpenMessageId(0);
 		LoginView lv = new LoginView();
 		System.out.println("logout");
+		//LoginView.getStage().setTitle("Login");
 		LoginView.getStage().setScene(lv.getScene());
+		
 	}
 
 }
