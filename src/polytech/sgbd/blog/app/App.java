@@ -19,7 +19,7 @@ public class App {
 	public static void main(String[] args) {
 
 		MessageController messageController = SessionController.getMessageController();
-
+		
 		/* Initial Data */
 		// User1
 		User usr1 = new User();
@@ -32,6 +32,15 @@ public class App {
 		usr1.setAddress("Grandmont");
 
 		Date date = new Date();
+		
+		DateFormat df= new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
+		try {
+			date = df.parse(df.format(date));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(date.toString());
 
 		Image img1_1 = new Image();
 		Image img1_2 = new Image();
@@ -52,14 +61,7 @@ public class App {
 		keyword1_3.setText("tired");
 
 	
-		DateFormat df= new SimpleDateFormat("dd/MM/yyyy HH:mm:ss"); 
-		try {
-			date = df.parse(df.format(date));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println(date.toString());
+
 
 		List<Image> images = new ArrayList<Image>();
 		List<Link> links = new ArrayList<Link>();
