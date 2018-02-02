@@ -2,7 +2,6 @@ package polytech.sgbd.blog.view.viewHandler;
 
 import java.io.IOException;
 
-import com.sun.javafx.robot.impl.FXRobotHelper;
 
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
